@@ -4,6 +4,7 @@ import edu.neu.coe.info6205.util.Benchmark_Timer;
 import edu.neu.coe.info6205.util.TimeLogger;
 import edu.neu.coe.info6205.util.Utilities;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -34,6 +35,18 @@ public class ThreeSumBenchmark {
 
     private void benchmarkThreeSum(final String description, final Consumer<int[]> function, int n, final TimeLogger[] timeLoggers) {
         if (description.equals("ThreeSumCubic") && n > 4000) return;
+        double startTime;
+        double endTime;
+        double totalTime=0;
+        for(int i=0;i<runs;i++) {
+        	startTime=System.currentTimeMillis();
+        	function.accept(supplier.get());
+        	endTime=System.currentTimeMillis();
+        	totalTime+=endTime-startTime;
+        }
+        totalTime=totalTime/runs;
+        timeLoggers[0].log(totalTime, n);
+        timeLoggers[1].log(totalTime, n);
         // FIXME
         // END 
     }
