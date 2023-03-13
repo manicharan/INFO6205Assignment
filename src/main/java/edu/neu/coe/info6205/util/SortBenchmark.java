@@ -6,6 +6,7 @@ package edu.neu.coe.info6205.util;
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.sort.HelperFactory;
+import edu.neu.coe.info6205.sort.InstrumentedHelper;
 import edu.neu.coe.info6205.sort.SortWithHelper;
 import edu.neu.coe.info6205.sort.elementary.BubbleSort;
 import edu.neu.coe.info6205.sort.elementary.HeapSort;
@@ -103,7 +104,7 @@ public class SortBenchmark {
             runStringSortBenchmark(words, nWords, nRuns, new QuickSort_Basic<>(nWords, config), timeLoggersLinearithmic);
 
         if (isConfigBenchmarkStringSorter("heapsort")) {
-            Helper<String> helper = HelperFactory.create("Heapsort", nWords, config);
+            InstrumentedHelper<String> helper = new InstrumentedHelper<>("Heapsort", nWords, config);
             runStringSortBenchmark(words, nWords, nRuns, new HeapSort<>(helper), timeLoggersLinearithmic);
         }
         
